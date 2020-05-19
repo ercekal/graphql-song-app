@@ -1,11 +1,21 @@
 import React from 'react';
-import qgl from 'graphql-tag'
-import {graphql} from 'react-apollo'
+import { gql } from "apollo-boost";
+import { useQuery } from '@apollo/react-hooks';
 
+const SONGS = gql`
+  {
+    songs {
+      title
+      id
+    }
+  }
+`;
 
-const SongList = ({data: {loading, error, songs}}) => {
+const SongList = () => {
+  const { loading, error, data } = useQuery(SONGS);
+
   function renderSongs() {
-    return songs.map(song => {
+    return data.songs.map(song => {
       return (
         <li key={song.id}>
           {song.title}
@@ -23,13 +33,4 @@ const SongList = ({data: {loading, error, songs}}) => {
   )
 };
 
-
-const query = qgl`
-  {
-    songs {
-      title
-      id
-    }
-  }
-`
-export default graphql(query)(SongList);
+export default SongList;
