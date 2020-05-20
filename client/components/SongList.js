@@ -1,24 +1,26 @@
 import React from 'react';
-import { gql } from "apollo-boost";
-import { useQuery } from '@apollo/react-hooks';
-
-const SONGS = gql`
-  {
-    songs {
-      title
-      id
-    }
-  }
-`;
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom'
+import GET_SONGS from '../queries/fetchSongs'
+import DELETE_SONG from '../mutations/deleteSong'
+import '../style/style.css'
 
 const SongList = () => {
-  const { loading, error, data } = useQuery(SONGS);
+  const { loading, error, data, refetch } = useQuery(GET_SONGS);
+  const [DeleteSong] = useMutation(DELETE_SONG);
 
   function renderSongs() {
-    return data.songs.map(song => {
+    return data.songs.map(({id, title}) => {
       return (
-        <li key={song.id}>
-          {song.title}
+        <li key={id} className='collection-item'>
+          {title}
+          <i
+          className='material-icons'
+            onClick={() => DeleteSong({
+              variables: {id: id}
+            })
+            .then(() => refetch())
+          }>delete</i>
         </li>
       )
     })
@@ -28,7 +30,13 @@ const SongList = () => {
   }
   return (
     <div>
-      {renderSongs()}
+      <ul className='collection'>
+        {renderSongs()}
+      </ul>
+      <Link
+        to='/new'
+        className='btn-floating btn-large red right'><i className='material-icons'>add</i>
+      </Link>
     </div>
   )
 };
