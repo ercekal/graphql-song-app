@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import { Route, Link, Switch, BrowserHistory, BrowserRouter as Router } from 'react-router-dom'
+import { Route, HashRouter, Switch } from 'react-router-dom'
 import SongList from './components/SongList'
 import SongCreate from './components/SongCreate'
 import App from './components/App'
@@ -11,14 +11,14 @@ const client = new ApolloClient({});
 
 const Root = () => {
   return (
-    <ApolloProvider client={client}>
-      <Router history={BrowserHistory}>
+    <HashRouter>
+      <ApolloProvider client={client}>
         <Switch>
-          <Route exact path="/" component={SongList} />
-          <Route path='song/new' component={SongCreate} />
+          <Route exact path='/' component={SongList} />
+          <Route path='/new' component={SongCreate} />
         </Switch>
-      </Router>
-    </ApolloProvider>
+      </ApolloProvider>
+    </HashRouter>
   )
 };
 

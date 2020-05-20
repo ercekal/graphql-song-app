@@ -2,6 +2,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
+},
+  mode: 'development',
   entry: './client/index.js',
   output: {
     path: '/',
