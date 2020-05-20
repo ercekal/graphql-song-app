@@ -16,7 +16,7 @@ const Root = () => {
         <Switch>
           <Route exact path='/' component={SongList} />
           <Route path='/new' component={SongCreate} />
-          <Route path='/songs/:id' component={SongDetail} />
+          <Route path='/song/:id' component={SongDetail} />
         </Switch>
       </ApolloProvider>
     </HashRouter>

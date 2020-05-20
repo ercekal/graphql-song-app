@@ -3,22 +3,12 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
 import { Link, useHistory } from 'react-router-dom'
 import GET_SONGS from '../queries/fetchSongs'
-
-const ADD_SONG = gql`
-  mutation AddSong($title: String!) {
-    addSong(title: $title) {
-      id
-      title
-    }
-  }
-`;
+import ADD_SONG from '../mutations/addSong'
 
 export default function SongCreate() {
   let history = useHistory();
   const [title, setTitle] = useState('')
   const [AddSong] = useMutation(ADD_SONG);
-
-  let input;
 
   return (
     <div>

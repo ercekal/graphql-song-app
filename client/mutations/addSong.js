@@ -1,8 +1,9 @@
 import { gql } from "apollo-boost";
 
 export default gql`
-  mutation ($id: ID!) {
-    deleteSong(id: $id) {
+  mutation AddSong($title: String!) {
+    addSong(title: $title) {
+      id
       title
     }
   }

@@ -1,11 +1,13 @@
 import { gql } from "apollo-boost";
 
 export default gql`
-  {
-    song($id: ID!) {
+  query getSong($id: ID!) {
+    song(id: $id) {
       id
       title
-      lyrics
+      lyrics {
+        content
+      }
     }
   }
 `;

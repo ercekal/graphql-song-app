@@ -12,16 +12,20 @@ const SongList = () => {
   function renderSongs() {
     return data.songs.map(({id, title}) => {
       return (
-        <li key={id} className='collection-item'>
-          {title}
-          <i
-          className='material-icons'
-            onClick={() => DeleteSong({
-              variables: {id: id}
-            })
-            .then(() => refetch())
-          }>delete</i>
-        </li>
+        <Link
+          key={id}
+          to={`/song/${id}`}>
+          <li className='collection-item'>
+            {title}
+            <i
+            className='material-icons'
+              onClick={() => DeleteSong({
+                variables: {id: id}
+              })
+              .then(() => refetch())
+            }>delete</i>
+          </li>
+        </Link>
       )
     })
   }
