@@ -15,7 +15,15 @@ const LyricList = ({lyrics, refetch}) => {
           <div className='collection-item-icons'>
             <i className='material-icons'
               onClick={() => LikeLyric({
-                variables: {id: id}
+                variables: {id: id},
+                optimisticResponse: {
+                  __typename: "Mutation",
+                  likeLyric: {
+                    id,
+                    __typename: "LyricType",
+                    likes: likes + 1
+                  }
+                }
               })
             }>thumb_up</i> {likes}
             <i className='material-icons'
