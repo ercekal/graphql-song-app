@@ -1,2 +1,1 @@
-# Lyrical-GraphQL
-Starter project from a GraphQL course on Udemy.com
+FE part of a GraphQL project for adding a song, adding, deleting and liking lyrics
