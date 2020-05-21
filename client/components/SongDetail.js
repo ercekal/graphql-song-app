@@ -20,7 +20,6 @@ const SongDetail = () => {
     <div>
       <h3>{title}</h3> <br />
       <LyricList lyrics={lyrics} refetch={refetch} />
-
       <LyricCreate songId={id}/>
       <Link to='/' className='btn-floating btn-large red right'>Back</Link>
     </div>
