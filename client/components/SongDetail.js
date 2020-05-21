@@ -7,7 +7,7 @@ import LyricList from './LyricList'
 
 const SongDetail = () => {
   let { id } = useParams();
-  const { loading, error, data } = useQuery(GET_SONG, {
+  const { loading, error, data, refetch } = useQuery(GET_SONG, {
     variables: { id },
   });
   if (loading) {
@@ -19,8 +19,8 @@ const SongDetail = () => {
   return (
     <div>
       <h3>{title}</h3> <br />
-      <LyricList lyrics={lyrics} />
-      
+      <LyricList lyrics={lyrics} refetch={refetch} />
+
       <LyricCreate songId={id}/>
       <Link to='/' className='btn-floating btn-large red right'>Back</Link>
     </div>
